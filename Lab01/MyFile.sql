@@ -12,6 +12,7 @@ insert all
 select * from dual;
 commit;
 
+select * from RNA_T;
 ------------------------------------ Задание №12
 update RNA_t set x = 22 where s = 'a';
 update RNA_t set s = 'd' where x = 3;
@@ -39,8 +40,8 @@ select * from dual;
 commit;
 
 ------------------------------------ Задание №16
-select * from RNA_t left join RNA_tl on RNA_tl.x = RNA_t.x;
-select * from RNA_t right join RNA_tl on RNA_tl.x = RNA_t.x;
+select * from RNA_t left outer join RNA_tl on RNA_tl.x = RNA_t.x;
+select * from RNA_t right outer join RNA_tl on RNA_tl.x = RNA_t.x;
 select * from RNA_t join RNA_tl on RNA_tl.x = RNA_t.x;
 
 ------------------------------------ Задание №18
