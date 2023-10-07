@@ -1,15 +1,14 @@
 ------------------------------------ Задание №1
--- drop tablespace TS_RNA
+-- drop tablespace TS_RNA including contents and datafiles
 create tablespace TS_RNA
   datafile 'TS_RNA.dbf'
   size 7M
   autoextend on next 5M
-  maxsize 20M
-  extent management local;
+  maxsize 20M;
 
 
 ------------------------------------ Задание №2
--- drop tablespace TS_RNA_TEMP
+-- drop tablespace TS_RNA_TEMP including contents and datafiles
 create temporary tablespace TS_RNA_TEMP
   tempfile 'TS_RNA_TEMP.dbf'
   size 5M
@@ -24,6 +23,7 @@ select * from SYS.dba_data_files;
 
 ------------------------------------ Задание №4
 alter session set "_ORACLE_SCRIPT"=true;
+--drop role RL_RNACORE;
 create role RL_RNACORE;
 
 grant connect, create session, create any table, drop any table, create any view,
@@ -36,6 +36,7 @@ select * from dba_sys_privs;
 select * from dba_roles;
 
 ------------------------------------ Задание №6
+--drop profile PF_RNACORE;
 create profile PF_RNACORE limit
   password_life_time 365
   sessions_per_user 5
@@ -103,6 +104,7 @@ alter tablespace RNA_QDATA online;
 alter user RNACORE quota 2M on RNA_QDATA;
 
 -- RNACORE
+--drop table RNA_T1
 create table RNA_T1
 (
     xx number(2),
