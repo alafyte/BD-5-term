@@ -7,8 +7,10 @@ select * from v$instance;
 ------------------------------------ Задание №3
 select * from v$option;
 
-CREATE PLUGGABLE DATABASE RNA_PDB ADMIN USER pdb_admin IDENTIFIED BY 1234
-ROLES = (DBA) FILE_NAME_CONVERT =('C:\app\oracle_user\oradata\orcl\pdbseed', 'C:\app\oracle_user\oradata\orcl\RNA_PDB');
+create pluggable database RNA_PDB admin user pdb_admin identified by 1234
+roles = (DBA) file_name_convert =('C:\app\oracle_user\oradata\orcl\pdbseed', 'C:\app\oracle_user\oradata\orcl\RNA_PDB');
+
+alter pluggable database RNA_PDB open;
 
 
 ------------------------------------ Задание №5
@@ -84,3 +86,10 @@ grant connect, create session, alter session, create any table,
 drop any table to C##RNA container = all;
 -- PDB
 grant create session to C##RNA;
+
+
+------------------------------------ Задание №13
+alter pluggable database RNA_PDB close immediate;
+drop pluggable database RNA_PDB including datafiles;
+drop user C##RNA;
+
