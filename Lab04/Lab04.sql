@@ -3,6 +3,7 @@ select * from DBA_DATA_FILES;
 select * from DBA_TEMP_FILES;
 
 ------------------------------------ Задание №2
+drop tablespace RNA_QDATA including contents and datafiles;
 create tablespace RNA_QDATA
   datafile 'RNA_QDATA.dbf'
   size 10M
@@ -13,6 +14,7 @@ alter tablespace RNA_QDATA online;
 alter user RNACORE quota 2M on RNA_QDATA;
 
 --RNACORE
+-- drop table RNA_T1
 create table RNA_T1 (
     x int primary key,
     s varchar2(50)
@@ -27,13 +29,13 @@ select * from dual;
 ------------------------------------ Задание №3
 select SEGMENT_NAME, SEGMENT_TYPE, TABLESPACE_NAME, BYTES, blocks, extents
 from USER_SEGMENTS
-where SEGMENT_NAME like '%RNA%';
+where TABLESPACE_NAME='RNA_QDATA';
 
 select * from USER_SEGMENTS;
 
 ------------------------------------ Задание №4
 drop table RNA_T1;
-select * from USER_SEGMENTS;
+select * from USER_SEGMENTS where TABLESPACE_NAME='RNA_QDATA';
 
 select * from USER_RECYCLEBIN;
 --purge table RNA_T1;
@@ -87,7 +89,7 @@ alter database add logfile
     to group 4;
 
 select * from V$LOG order by GROUP#;
-select * from V$LOGFILE order by GROUP#;
+select GROUP#, MEMBER from V$LOGFILE order by GROUP#;
 
 ------------------------------------ Задание №13
 --alter system checkpoint;
@@ -116,9 +118,9 @@ select DBID, NAME, LOG_MODE from V$DATABASE;
 select INSTANCE_NAME, ARCHIVER, ACTIVE_STATE from V$INSTANCE;
 
 ------------------------------------ Задание №17
-ALTER SYSTEM SET LOG_ARCHIVE_DEST_1 ='LOCATION=C:\app\oracle_user\oradata\orcl\Archive';
-ALTER SYSTEM SWITCH LOGFILE;
-SELECT * FROM V$ARCHIVED_LOG;
+alter system set LOG_ARCHIVE_DEST_1 ='LOCATION=C:\app\oracle_user\oradata\orcl\Archive';
+select * from V$ARCHIVED_LOG;
+alter system switch logfile;
 select * from V$LOG order by GROUP#;
 
 ------------------------------------ Задание №18
