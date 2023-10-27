@@ -5,7 +5,7 @@ select * from dba_pdbs;
 select * from v$instance;
 
 ------------------------------------ Задание №3
-select * from v$option;
+select * from SYS.PRODUCT_COMPONENT_VERSION;
 
 create pluggable database RNA_PDB admin user pdb_admin identified by 1234
 roles = (DBA) file_name_convert =('C:\app\oracle_user\oradata\orcl\pdbseed', 'C:\app\oracle_user\oradata\orcl\RNA_PDB');
@@ -31,7 +31,6 @@ create temporary tablespace TS_PDB_RNA_TEMP
   autoextend on next 3M
   maxsize 30M;
 
-alter session set "_ORACLE_SCRIPT"=TRUE;
 --drop role RL_PDB_RNACORE;
 create role RL_PDB_RNACORE;
 
