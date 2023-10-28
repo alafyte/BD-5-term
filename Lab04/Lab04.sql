@@ -159,4 +159,4 @@ select * from V$DIAG_INFO;
 
 ------------------------------------ Задание №25
 -- C:\app\oracle_user\diag\rdbms\orcl\orcl\alert\log.xml
---log sequence
+--switch
