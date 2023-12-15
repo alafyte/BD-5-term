@@ -1,5 +1,5 @@
 ------------------------------------ Задание №1
-create or replace procedure U1_RNA_PDB.GET_TEACHERS(PCODE TEACHER.PULPIT%TYPE)
+declare procedure GET_TEACHERS(PCODE TEACHER.PULPIT%TYPE)
     is
     cursor GetTeachers is select TEACHER, TEACHER_NAME, PULPIT
                           from TEACHER
@@ -7,7 +7,7 @@ create or replace procedure U1_RNA_PDB.GET_TEACHERS(PCODE TEACHER.PULPIT%TYPE)
     m_teacher      TEACHER.TEACHER%TYPE;
     m_teacher_name TEACHER.TEACHER_NAME%TYPE;
     m_pulpit       TEACHER.PULPIT%TYPE;
-begin
+    begin
     open GetTeachers;
     fetch GetTeachers into m_teacher, m_teacher_name, m_pulpit;
     DBMS_OUTPUT.PUT_LINE(m_teacher || ' ' || m_teacher_name || ' ' || m_pulpit);
@@ -25,7 +25,7 @@ begin
 end;
 
 ------------------------------------ Задание №2
-create or replace function U1_RNA_PDB.GET_NUM_TEACHERS (PCODE TEACHER.PULPIT%TYPE)
+declare function GET_NUM_TEACHERS (PCODE TEACHER.PULPIT%TYPE)
 return number
 is
     result_num number;
@@ -39,7 +39,7 @@ begin
 end;
 
 ------------------------------------ Задание №3
-create or replace procedure U1_RNA_PDB.GET_TEACHERS_BY_FACULTY (FCODE FACULTY.FACULTY%TYPE)
+declare procedure GET_TEACHERS_BY_FACULTY (FCODE FACULTY.FACULTY%TYPE)
     is
     cursor GetTeachersByFaculty is
         select TEACHER, TEACHER_NAME, P.PULPIT
@@ -68,7 +68,7 @@ begin
 end;
 
 
-create or replace procedure U1_RNA_PDB.GET_SUBJECTS (PCODE SUBJECT.PULPIT%TYPE)
+declare procedure GET_SUBJECTS (PCODE SUBJECT.PULPIT%TYPE)
 is
     cursor GetSubjects is
     select * from SUBJECT where PULPIT=PCODE;
@@ -94,7 +94,7 @@ begin
 end;
 
 ------------------------------------ Задание №4
-create or replace function U1_RNA_PDB.FGET_NUM_TEACHERS (FCODE FACULTY.FACULTY%TYPE)
+declare function FGET_NUM_TEACHERS (FCODE FACULTY.FACULTY%TYPE)
 return number
 is
     result_num number;
@@ -108,7 +108,7 @@ begin
     DBMS_OUTPUT.PUT_LINE(FGET_NUM_TEACHERS('ИДиП'));
 end;
 
-create or replace function U1_RNA_PDB.GET_NUM_SUBJECTS (PCODE SUBJECT.PULPIT%TYPE) return number
+declare function GET_NUM_SUBJECTS (PCODE SUBJECT.PULPIT%TYPE) return number
 is
     result_num number;
 begin
