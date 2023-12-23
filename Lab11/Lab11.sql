@@ -39,7 +39,7 @@ begin
 end;
 
 ------------------------------------ Задание №3
-declare procedure GET_TEACHERS_BY_FACULTY (FCODE FACULTY.FACULTY%TYPE)
+create or replace procedure GET_TEACHERS_BY_FACULTY (FCODE FACULTY.FACULTY%TYPE)
     is
     cursor GetTeachersByFaculty is
         select TEACHER, TEACHER_NAME, P.PULPIT
@@ -68,7 +68,7 @@ begin
 end;
 
 
-declare procedure GET_SUBJECTS (PCODE SUBJECT.PULPIT%TYPE)
+create or replace procedure GET_SUBJECTS (PCODE SUBJECT.PULPIT%TYPE)
 is
     cursor GetSubjects is
     select * from SUBJECT where PULPIT=PCODE;
